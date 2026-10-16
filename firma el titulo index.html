@@ -1,0 +1,794 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuestra historia ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+:root {
+  --wine: #842d4b;
+  --rose: #d85d80;
+  --pink: #f8dce5;
+  --cream: #fffaf7;
+  --ink: #492936;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 24px 14px 45px;
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  background:
+    radial-gradient(ellipse at 10% 10%, #fff 0, transparent 35%),
+    linear-gradient(145deg, #f8e5e9, #f4cdd9 55%, #fff1e8);
+}
+
+button, input, select, textarea { font: inherit; }
+
+button { cursor: pointer; }
+
+.shell {
+  width: min(100%, 590px);
+  margin: auto;
+}
+
+.top {
+  text-align: center;
+  margin: 10px 0 22px;
+}
+
+.brand {
+  letter-spacing: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--wine);
+  text-transform: uppercase;
+}
+
+.top h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(35px, 8vw, 52px);
+  line-height: 1.12;
+  margin: 13px 0 9px;
+  font-weight: 500;
+}
+
+.top p {
+  margin: 0;
+  color: #875b6a;
+  font-size: 14px;
+}
+
+.card {
+  overflow: hidden;
+  background: rgba(255,250,247,.96);
+  border: 1px solid #fff;
+  border-radius: 25px;
+  box-shadow: 0 20px 65px #7b34441c;
+}
+
+.cover {
+  text-align: center;
+  padding: 27px 25px 24px;
+  background: linear-gradient(140deg, #f6d9e1, #fff0e8);
+}
+
+.heart {
+  font-size: 43px;
+  animation: heartbeat 1.8s infinite;
+}
+
+.cover h2 {
+  font: 500 28px 'Playfair Display', Georgia, serif;
+  margin: 9px 0;
+}
+
+.cover p {
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 410px;
+  margin: 0 auto;
+  color: #805363;
+}
+
+.progress {
+  display: flex;
+  gap: 7px;
+  padding: 19px 23px 0;
+}
+
+.progress span {
+  height: 4px;
+  border-radius: 9px;
+  flex: 1;
+  background: #ead9df;
+}
+
+.progress span.active { background: var(--rose); }
+
+.step-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 700;
+  margin-bottom: 9px;
+}
+
+.content { padding: 25px; }
+
+.panel h3 {
+  font: 500 28px 'Playfair Display', Georgia, serif;
+  margin: 0 0 10px;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #80616d;
+  margin: 0 0 20px;
+}
+
+.letter {
+  background: white;
+  border: 1px solid #f0dce3;
+  border-radius: 15px;
+  padding: 20px;
+  line-height: 1.85;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 16px;
+}
+
+.letter .signature-text {
+  margin-top: 18px;
+  color: var(--wine);
+  font-style: italic;
+}
+
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 18px 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #775765;
+}
+
+.consent input {
+  margin-top: 4px;
+  accent-color: var(--rose);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 23px;
+}
+
+.btn {
+  border: 0;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 13px;
+  transition: transform .2s, opacity .2s;
+}
+
+.btn:hover { transform: translateY(-2px); }
+
+.primary {
+  color: white;
+  background: linear-gradient(135deg, #b74467, #e27896);
+  box-shadow: 0 7px 20px #d85d8030;
+  flex: 1;
+}
+
+.secondary {
+  background: #f4e7eb;
+  color: var(--wine);
+}
+
+.full { width: 100%; }
+
+.field { margin: 17px 0; }
+
+.field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #684050;
+}
+
+.field input, .field select, .field textarea {
+  width: 100%;
+  border: 1px solid #e9d5dc;
+  background: white;
+  color: var(--ink);
+  padding: 13px 14px;
+  border-radius: 11px;
+  outline: none;
+}
+
+.field input:focus, .field select:focus,
+.field textarea:focus {
+  border-color: var(--rose);
+  box-shadow: 0 0 0 3px #d85d8015;
+}
+
+.field textarea { resize: vertical; min-height: 80px; }
+
+.signature-box {
+  background: white;
+  border: 1px dashed #d8a8b7;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 180px;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.signature-hint {
+  text-align: center;
+  font-size: 11px;
+  color: #a07d8a;
+  padding: 0 10px 12px;
+}
+
+.clear {
+  display: block;
+  border: 0;
+  background: transparent;
+  color: #a33d60;
+  padding: 10px 0 0;
+  font-size: 12px;
+}
+
+.note {
+  color: #957481;
+  font-size: 11px;
+  line-height: 1.6;
+  margin-top: 13px;
+}
+
+.panel[hidden] { display: none; }
+
+.final {
+  text-align: center;
+  padding: 12px 0;
+}
+
+.final .big-heart { font-size: 60px; }
+
+.final h3 {
+  font: 500 34px 'Playfair Display', Georgia, serif;
+}
+
+.final p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #805c6b;
+}
+
+.summary {
+  text-align: left;
+  border-radius: 15px;
+  padding: 18px;
+  background: white;
+  border: 1px solid #f0dce3;
+  margin: 20px 0;
+  font-size: 13px;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+.footer {
+  text-align: center;
+  font-size: 11px;
+  color: #926a79;
+  padding: 18px 10px 0;
+}
+
+@keyframes heartbeat {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+@media (max-width: 420px) {
+  .content { padding: 20px; }
+  .cover { padding: 24px 18px; }
+  .actions { flex-wrap: wrap; }
+  .panel h3 { font-size: 25px; }
+}
+</style>
+</head>
+
+<body>
+<div class="shell">
+
+  <header class="top">
+    <div class="brand">Una historia especial · Hecha con amor</div>
+    <h1>Nuestra historia<br>comienza aquí</h1>
+    <p>Hay preguntas que pueden cambiarlo todo. ❤️</p>
+  </header>
+
+  <main class="card">
+    <section class="cover">
+      <div class="heart">💌</div>
+      <h2>Para alguien especial</h2>
+      <p>
+        Preparé esta pequeña sorpresa para ti.
+        No es un contrato ni una obligación, sino una invitación
+        a escribir juntos una historia bonita, si tú también lo deseas.
+      </p>
+    </section>
+
+    <div class="progress" aria-label="Progreso">
+      <span class="active" id="bar1"></span>
+      <span id="bar2"></span>
+      <span id="bar3"></span>
+    </div>
+
+    <div class="content">
+
+      <!-- PASO 1 -->
+      <section class="panel" id="paso1">
+        <div class="step-label">01 · La pregunta</div>
+        <h3>Quiero preguntarte algo…</h3>
+
+        <p class="description">
+          He disfrutado conocerte y quiero descubrir todo lo bonito
+          que podríamos vivir. Por eso, hoy quiero preguntarte algo
+          que sale directamente de mi corazón.
+        </p>
+
+        <div class="letter">
+          Me gustaría ser esa persona que te haga sonreír,
+          que te escuche cuando lo necesites, que respete tus
+          sentimientos y que construya contigo una relación
+          llena de cariño, confianza y complicidad.
+
+          <br><br>
+          No quiero prometerte una historia perfecta.
+          Quiero tener la oportunidad de construir una historia
+          sincera contigo.
+
+          <div class="signature-text">
+            Con mucho cariño, alguien que quiere estar a tu lado. ❤️
+          </div>
+        </div>
+
+        <h3 style="margin-top:25px;text-align:center">
+          ¿Quieres ser mi novia? 🌹
+        </h3>
+
+        <label class="consent">
+          <input type="checkbox" id="acepto">
+          <span>
+            Sí, quiero dar este paso libremente y me gustaría
+            continuar con esta sorpresa romántica.
+          </span>
+        </label>
+
+        <button class="btn primary full" onclick="continuarFirma()">
+          Sí, quiero vivir esta historia ❤️
+        </button>
+
+        <p class="note">
+          Si no estás segura, puedes cerrar la página. No tienes
+          ninguna obligación de aceptar.
+        </p>
+      </section>
+
+      <!-- PASO 2 -->
+      <section class="panel" id="paso2" hidden>
+        <div class="step-label">02 · Nuestro recuerdo</div>
+        <h3>Deja tu firma, bonita ✍️</h3>
+
+        <p class="description">
+          Si quieres, firma aquí como recuerdo simbólico de este
+          momento especial. Es una firma digital para guardar
+          en tu navegador, no un documento legal.
+        </p>
+
+        <div class="field">
+          <label for="nombre">Tu nombre o apodo</label>
+          <input id="nombre" type="text"
+                 maxlength="70"
+                 placeholder="Escribe cómo quieres que te llame">
+        </div>
+
+        <div class="field">
+          <label>Tu firma especial</label>
+          <div class="signature-box">
+            <canvas id="firma"></canvas>
+            <div class="signature-hint">
+              Firma con tu dedo o con el mouse ✨
+            </div>
+          </div>
+          <button type="button" class="clear" onclick="borrarFirma()">
+            ↻ Borrar y volver a firmar
+          </button>
+        </div>
+
+        <div class="actions">
+          <button class="btn secondary" onclick="irPaso(1)">
+            Volver
+          </button>
+          <button class="btn primary" onclick="continuarCita()">
+            Elegir nuestra cita 💕
+          </button>
+        </div>
+      </section>
+
+      <!-- PASO 3 -->
+      <section class="panel" id="paso3" hidden>
+        <div class="step-label">03 · Nuestra primera cita</div>
+        <h3>Ahora elijamos nuestro momento 🌷</h3>
+
+        <p class="description">
+          Quiero que sea un día bonito para los dos.
+          Escoge la fecha, la hora y el plan que más te guste.
+        </p>
+
+        <div class="field">
+          <label for="fecha">¿Qué día nos vemos?</label>
+          <input type="date" id="fecha" required>
+        </div>
+
+        <div class="field">
+          <label for="hora">¿A qué hora?</label>
+          <select id="hora">
+            <option value="">Escoge una hora</option>
+            <option>9:00 a. m.</option>
+            <option>10:00 a. m.</option>
+            <option>11:00 a. m.</option>
+            <option>12:00 p. m.</option>
+            <option>1:00 p. m.</option>
+            <option>2:00 p. m.</option>
+            <option>3:00 p. m.</option>
+            <option>4:00 p. m.</option>
+            <option>5:00 p. m.</option>
+            <option>6:00 p. m.</option>
+            <option>7:00 p. m.</option>
+            <option>8:00 p. m.</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="plan">¿Qué te gustaría hacer?</label>
+          <select id="plan">
+            <option value="">Escoge nuestro plan</option>
+            <option>☕ Una cita para tomar café</option>
+            <option>🍦 Helado y una caminata</option>
+            <option>🍽️ Una cena bonita</option>
+            <option>🌳 Un paseo al aire libre</option>
+            <option>🎬 Cine y algo rico para comer</option>
+            <option>🌅 Ver el atardecer juntos</option>
+            <option>🎁 Una sorpresa preparada por ti</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="lugar">¿Dónde te gustaría encontrarnos?</label>
+          <input id="lugar" type="text" maxlength="150"
+                 placeholder="Un café, un parque o un lugar público">
+        </div>
+
+        <div class="field">
+          <label for="nota">¿Algún detalle que te gustaría? (opcional)</label>
+          <textarea id="nota" maxlength="500"
+                    placeholder="Algo que te haga ilusión… 💗"></textarea>
+        </div>
+
+        <div class="actions">
+          <button class="btn secondary" onclick="irPaso(2)">
+            Volver
+          </button>
+          <button class="btn primary" onclick="confirmarCita()">
+            Guardar nuestro plan 💌
+          </button>
+        </div>
+      </section>
+
+      <!-- FINAL -->
+      <section class="panel" id="paso4" hidden>
+        <div class="final">
+          <div class="big-heart">💖</div>
+          <div class="step-label">Un nuevo comienzo</div>
+          <h3>¡Tenemos una cita!</h3>
+
+          <p id="saludo">
+            Qué bonito que hayamos elegido este momento.
+          </p>
+
+          <div class="summary" id="resumen"></div>
+
+          <p>
+            No sé todo lo que nos espera, pero me emociona
+            la posibilidad de descubrirlo contigo.
+            Gracias por compartir este momento conmigo. ❤️
+          </p>
+
+          <button class="btn primary full" onclick="compartir()">
+            Compartir nuestro plan 💌
+          </button>
+
+          <button class="btn secondary full"
+                  style="margin-top:10px"
+                  onclick="descargarRecuerdo()">
+            Guardar nuestro recuerdo
+          </button>
+
+          <p class="note">
+            Este plan queda en esta página mientras permanezca abierta.
+            Usa “Compartir” o “Guardar nuestro recuerdo” para conservarlo.
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    Hecho con cariño, pensando en ti. 🌹<br>
+    El amor bonito se elige, se cuida y se construye entre dos.
+  </footer>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+
+function irPaso(numero) {
+  for (let i = 1; i <= 4; i++) {
+    $("paso" + i).hidden = i !== numero;
+  }
+
+  for (let i = 1; i <= 3; i++) {
+    $("bar" + i).classList.toggle("active", i <= numero);
+  }
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  if (numero === 2) prepararCanvas();
+}
+
+function continuarFirma() {
+  if (!$("acepto").checked) {
+    alert("Marca la casilla si realmente quieres continuar ❤️");
+    return;
+  }
+
+  irPaso(2);
+}
+
+let canvas = $("firma");
+let ctx = canvas.getContext("2d");
+let dibujando = false;
+let firmo = false;
+
+function prepararCanvas() {
+  const rect = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+
+  canvas.width = rect.width * dpr;
+  canvas.height = 180 * dpr;
+
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.strokeStyle = "#842d4b";
+  ctx.lineWidth = 2.4;
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+}
+
+function posicion(event) {
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: event.clientX - rect.left,
+    y: event.clientY - rect.top
+  };
+}
+
+canvas.addEventListener("pointerdown", event => {
+  event.preventDefault();
+  dibujando = true;
+  canvas.setPointerCapture(event.pointerId);
+  const p = posicion(event);
+  ctx.beginPath();
+  ctx.moveTo(p.x, p.y);
+});
+
+canvas.addEventListener("pointermove", event => {
+  if (!dibujando) return;
+  event.preventDefault();
+  const p = posicion(event);
+  ctx.lineTo(p.x, p.y);
+  ctx.stroke();
+  firmo = true;
+});
+
+function terminarTrazo() {
+  dibujando = false;
+}
+
+canvas.addEventListener("pointerup", terminarTrazo);
+canvas.addEventListener("pointercancel", terminarTrazo);
+
+function borrarFirma() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  firmo = false;
+}
+
+function continuarCita() {
+  if (!$("nombre").value.trim()) {
+    alert("Escribe tu nombre o apodo 💗");
+    $("nombre").focus();
+    return;
+  }
+
+  if (!firmo) {
+    alert("Si quieres dejar este recuerdo, firma en el recuadro ✍️");
+    return;
+  }
+
+  irPaso(3);
+}
+
+function fechaLocalISO() {
+  const ahora = new Date();
+  const local = new Date(
+    ahora.getTime() - ahora.getTimezoneOffset() * 60000
+  );
+  return local.toISOString().split("T")[0];
+}
+
+$("fecha").min = fechaLocalISO();
+
+function confirmarCita() {
+  const fecha = $("fecha").value;
+  const hora = $("hora").value;
+  const plan = $("plan").value;
+  const lugar = $("lugar").value.trim();
+
+  if (!fecha || !hora || !plan || !lugar) {
+    alert("Completa la fecha, la hora, el plan y el lugar 💕");
+    return;
+  }
+
+  if (fecha < fechaLocalISO()) {
+    alert("Escoge una fecha de hoy en adelante.");
+    return;
+  }
+
+  const fechaBonita = new Date(fecha + "T12:00:00")
+    .toLocaleDateString("es-CO", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+
+  const datos = {
+    nombre: $("nombre").value.trim(),
+    fecha,
+    fechaBonita,
+    hora,
+    plan,
+    lugar,
+    nota: $("nota").value.trim(),
+    firma: canvas.toDataURL("image/png")
+  };
+
+  // Conserva los datos mientras la página esté abierta.
+  window.recuerdoRomantico = datos;
+
+  $("saludo").textContent =
+    "Qué bonito, " + datos.nombre +
+    ". Aquí comienza nuestro próximo recuerdo. ❤️";
+
+  $("resumen").innerHTML = `
+    <strong>💗 Nuestro plan</strong><br>
+    📅 ${escaparHTML(datos.fechaBonita)}<br>
+    🕒 ${escaparHTML(datos.hora)}<br>
+    🌷 ${escaparHTML(datos.plan)}<br>
+    📍 ${escaparHTML(datos.lugar)}
+    ${datos.nota ? "<br>💌 " + escaparHTML(datos.nota) : ""}
+    <br><br><strong>Con cariño para ${escaparHTML(datos.nombre)} ❤️</strong>
+  `;
+
+  irPaso(4);
+}
+
+function escaparHTML(texto) {
+  return String(texto).replace(/[&<>"']/g, caracter => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[caracter]);
+}
+
+function textoDelRecuerdo() {
+  const d = window.recuerdoRomantico;
+  return `❤️ ¡Nuestro plan especial!
+
+Para: ${d.nombre}
+Fecha: ${d.fechaBonita}
+Hora: ${d.hora}
+Plan: ${d.plan}
+Lugar: ${d.lugar}
+${d.nota ? "Detalle especial: " + d.nota : ""}
+
+Un nuevo recuerdo comienza aquí. 💌`;
+}
+
+async function compartir() {
+  const texto = textoDelRecuerdo();
+
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: "Nuestro plan especial ❤️",
+        text: texto
+      });
+      return;
+    } catch (error) {
+      if (error.name === "AbortError") return;
+    }
+  }
+
+  try {
+    await navigator.clipboard.writeText(texto);
+    alert("Nuestro plan se copió. Ya puedes pegarlo en WhatsApp 💌");
+  } catch {
+    prompt("Copia nuestro plan y envíalo por WhatsApp:", texto);
+  }
+}
+
+function descargarRecuerdo() {
+  const d = window.recuerdoRomantico;
+  const archivo = `
+    <html lang="es"><meta charset="UTF-8">
+    <title>Nuestro recuerdo</title>
+    <body style="font-family:Georgia,serif;max-width:650px;margin:40px auto;padding:25px;color:#842d4b;background:#fff8f8">
+    <h1 style="text-align:center">❤️ Nuestra historia ❤️</h1>
+    <h2>Un recuerdo especial para ${escaparHTML(d.nombre)}</h2>
+    <p>Fecha: ${escaparHTML(d.fechaBonita)}</p>
+    <p>Hora: ${escaparHTML(d.hora)}</p>
+    <p>Plan: ${escaparHTML(d.plan)}</p>
+    <p>Lugar: ${escaparHTML(d.lugar)}</p>
+    <p>${escaparHTML(d.nota)}</p>
+    <h3>Mi firma de este recuerdo ✍️</h3>
+    <img alt="Firma digital" src="${d.firma}" style="max-width:100%;border:1px solid #eed">
+    <p>El amor bonito se elige, se cuida y se construye entre dos. 💕</p>
+    </body></html>`;
+
+  const blob = new Blob([archivo], { type: "text/html;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "nuestro-recuerdo.html";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+window.addEventListener("resize", () => {
+  // No redibujar automáticamente para evitar borrar una firma en curso.
+});
+</script>
+</body>
+</html>
